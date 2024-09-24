@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-container h2 {
+            margin-bottom: 40px;
+            font-size: 24px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            background: #f1f1f1;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s ease-in-out;
+        }
+
+        .input-group input:focus {
+            background: #e6e6e6;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            font-size: 16px;
+            color: #aaa;
+            transform: translateY(-50%);
+            transition: 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 20px;
+            font-size: 14px;
+            color: #a1c4fd;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-container .error-message {
+            margin-top: 15px;
+            color: #e74c3c;
+            font-size: 14px;
+        }
+
+        .login-container .icon {
+            margin-bottom: 30px;
+        }
+
+        .login-container .icon img {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Hiệu ứng hover trên form */
+        .login-container:hover {
+            transform: scale(1.02);
+            transition: 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <div class="icon">
+        <img src="https://img.icons8.com/ios-filled/80/66a6ff/user-male-circle.png" alt="User Icon">
+    </div>
+    <h2>Đăng Nhập</h2>
+    <form id="loginForm">
+        <div class="input-group">
+            <input type="text" id="username" placeholder=" " required>
+            <label for="username">Tên đăng nhập</label>
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" placeholder=" " required>
+            <label for="password">Mật khẩu</label>
+        </div>
+        <div class="input-group">
+            <input type="password" id="confirmPassword" placeholder=" " required>
+            <label for="confirmPassword">Xác nhận mật khẩu</label>
+        </div>
+        <button type="submit">Đăng Nhập</button>
+        <p class="error-message" id="errorMessage"></p>
+    </form>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+            document.getElementById('errorMessage').textContent = 'Mật khẩu và xác nhận mật khẩu không khớp!';
+        } else if (username === "admin" && password === "123456") {
+            alert('Đăng nhập thành công');
+            window.location.href = 'home.html';
+        } else {
+            document.getElementById('errorMessage').textContent = 'Tên đăng nhập hoặc mật khẩu không đúng!';
+        }
+    });
+</script>
+
+</body>
+</html>

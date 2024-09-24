@@ -6,4 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Cloud computing class' });
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Cloud computing class' });
+});
+
+
 module.exports = router;
